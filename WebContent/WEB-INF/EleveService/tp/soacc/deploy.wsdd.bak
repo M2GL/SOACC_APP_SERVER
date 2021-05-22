@@ -1,0 +1,29 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EleveService WSDL service -->
+
+  <service name="Eleve" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soacc.tp"/>
+      <parameter name="wsdlServiceElement" value="EleveService"/>
+      <parameter name="schemaQualified" value="http://soacc.tp"/>
+      <parameter name="wsdlServicePort" value="Eleve"/>
+      <parameter name="className" value="tp.soacc.EleveSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Eleve"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getMoyen" qname="operNS:getMoyen" xmlns:operNS="http://soacc.tp" returnQName="retNS:getMoyenReturn" xmlns:retNS="http://soacc.tp" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://soacc.tp" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getMoyen"/>
+
+  </service>
+</deployment>
